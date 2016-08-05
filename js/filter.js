@@ -1,25 +1,25 @@
 /*
  * pokemon Filter - Content Script
- * 
+ *
  * This is the primary JS file that manages the detection and filtration of pokemon from the web page.
  */
 
 // Variables
 var regex = /Pokemon/i;
 var search = regex.exec(document.body.innerText);
-
+var selector = ":contains('POKEMON'), :contains('Pokemon'), :contains('pokemon'), :contains('Pokémon'), :contains('pokémon')";
 
 // Functions
 function filterMild() {
-	return $(":contains('POKEMON'), :contains('Pokemon'), :contains('pokemon'), :contains('Pokémon), :contains('pokémon')").filter("h1,h2,h3,h4,h5,p,span,li");
+	return $(selector).filter("h1,h2,h3,h4,h5,p,span,li");
 }
 
 function filterDefault () {
-	return $(":contains('POKEMON'), :contains('Pokemon'), :contains('pokemon), :contains('Pokémon), :contains('pokémon')").filter(":only-child").closest('div');
+	return $(selector).filter(":only-child").closest('div');
 }
 
 function filterVindictive() {
-	return $(":contains('POKEMON'), :contains('Pokemon'), :contains('pokemon'), :contains('Pokémon), :contains('pokémon')").filter(":not('body'):not('html')");
+	return $(selector).filter(":not('body'):not('html')");
 }
 
 function getElements(filter) {
@@ -40,9 +40,9 @@ function filterElements(elements) {
 // Implementation
 if (search) {
    chrome.storage.sync.get({
-     filter: 'aggro',
+     filter: 'aggro'
    }, function(items) {
-	   elements = getElements(items.filter);
+	   var elements = getElements(items.filter);
 	   filterElements(elements);
 	   chrome.runtime.sendMessage({method: "saveStats", pokemons: elements.length}, function(response) {
 		 });
