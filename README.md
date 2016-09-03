@@ -19,6 +19,24 @@ Features
 * Sensitivity settings to customize the aggressiveness of the filter - remove single references, chunks or the entire page.
 
 
+Media Attention
+--------------------------
+After I posted about the extension on [Product Hunt](https://www.producthunt.com/tech/pokegone) things got a little crazy. From getting asked to go on radio which I declined!) in Canada and America, being in some printed newspapers, to even ABC News doing a small piece on the extension. Oh, and random messages from Pokemon fans going mad at me. Here are just some of the media attention it got:
+
+[ABC News (TV)](http://abcnews.go.com/WNN/video/pokegone-chrome-extension-40568608)
+
+[Huffington Post](http://www.huffingtonpost.com/entry/if-you-hate-fun-and-pokemon-pokegone-is-the-chrome-extension-you-need_us_57863b80e4b08608d33246a8)
+
+[Daily Mail](http://www.dailymail.co.uk/sciencetech/article-3689264/Don-t-watch-catch-em-PokeGone-plugin-blocks-mention-Pok-mon-browsing.html)
+
+[The Independent](http://www.independent.co.uk/life-style/gadgets-and-tech/gaming/pokemon-go-google-chrome-extension-pokegone-block-content-a7136461.html)
+
+[CNET](http://www.cnet.com/uk/news/sick-of-pokemon-theres-a-chrome-extension-for-that/)
+
+[Venture Beat](http://venturebeat.com/2016/07/13/wish-pokemon-go-would-go-away-new-pokegone-chrome-extension-will-block-pokemon-content-for-you/)
+
+To see the hundreds (or maybe even thousands) of other articles post about it, see the [Google search](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=pokegone&start=0) for Pokegone.
+
 Installation (for Users)
 --------------------------
 
