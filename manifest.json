@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "PokeGone - Gotta block 'em all",
+  "name": "BSFilter - Gotta block 'em all",
   "version": "1.2",
   "description": "Remove Bullshit from the Internet!",
   "page_action" :
   {
     "default_icon" : "images/icon-19x19.png",
-    "default_title" : "Warning: Bullshit are on this page!"
+    "default_title" : "Warning: Bullshit is on this page!"
   },
   "permissions": [
     "tabs",
