@@ -5,9 +5,9 @@
  */
 
 // Variables
-var regex = /Pokemon/i;
+var regex = /Bullshit/i;
 var search = regex.exec(document.body.innerText);
-var selector = ":contains('POKEMON'), :contains('Pokemon'), :contains('pokemon'), :contains('Pokémon'), :contains('pokémon')";
+var selector = ":contains('BULLSHIT'), :contains('Bullshit'), :contains('bullshit')";
 
 // Functions
 function filterMild() {
@@ -44,7 +44,7 @@ if (search) {
    }, function(items) {
 	   var elements = getElements(items.filter);
 	   filterElements(elements);
-	   chrome.runtime.sendMessage({method: "saveStats", pokemons: elements.length}, function(response) {
+	   chrome.runtime.sendMessage({method: "saveStats", bullshits: elements.length}, function(response) {
 		 });
 	 });
   chrome.runtime.sendMessage({}, function(response) {});
