@@ -29,7 +29,7 @@ Features
 ~~Just install the extension from [the Chrome Web
 Store](https://chrome.google.com/webstore/detail/jionadcjdpdikjmgfohlohnclocfaija)!~~
 
-~~Then surf the web as normal without worrying about bumping in to adults going mad about Pokemon.~~
+~~Then surf the web as normal without worrying about bumping in to adults going mad about Bullshit.~~
 
 
 Installation (for Developers)

@@ -1,7 +1,7 @@
 /*
- * pokemon Filter - Content Script
+ * bullshit Filter - Content Script
  *
- * This is the primary JS file that manages the detection and filtration of pokemon from the web page.
+ * This is the primary JS file that manages the detection and filtration of bullshit from the web page.
  */
 
 // Variables

@@ -15,11 +15,11 @@ function saveOptions() {
 function getOptions(callback) {
   chrome.storage.sync.get({
     filter: 'aggro',
-    pokemons: 0,
+    bullshits: 0,
     pages: 0
   }, function(items) {
     document.getElementById('selectedFilter').value = items.filter;
-    document.getElementById('pokemoncount').textContent = items.pokemons;
+    document.getElementById('bullshitcount').textContent = items.bullshits;
     document.getElementById('pagecount').textContent = items.pages;
     callback(items.filter);
     return items.filter;
