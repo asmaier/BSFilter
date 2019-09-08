@@ -4,22 +4,23 @@
  * This is the primary JS file that manages the detection and filtration of bullshit from the web page.
  */
 
-var xpathPatterns = [ ];
+var xpathPatterns = [];
 
-var badWords = [
-    'bullshit', 'bull-shit', 'bull shit'
-];
+chrome.storage.sync.get({
+    blacklist: 'bullshit'
+}, function(items) {
+    badWords = items.blacklist.toLowerCase().split(/\r?\n/);
+    for(var i = 0; i < badWords.length; i++) {
 
-for(var i = 0; i < badWords.length; i++) {
-
-    var word = badWords[i];
-    xpathPatterns.push(
-        "//text()[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + word + "')]",
-        "//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]",
-        "//img[contains(translate(@src, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]",
-        "//img[contains(translate(@alt, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]"
-    );
-}
+        var word = badWords[i];
+        xpathPatterns.push(
+            "//text()[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + word + "')]",
+            "//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]",
+            "//img[contains(translate(@src, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]",
+            "//img[contains(translate(@alt, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]"
+        );
+    }
+});
 
 function filterNodes() {
     var array = new Array();
@@ -42,21 +43,17 @@ function filterNodes() {
     }
 }
 
-if (true)
-    window.addEventListener("load", function() {
-        filterNodes()
-    });
-
-
-function autoRun() {
+window.addEventListener("load", function() {
     filterNodes()
-}
+});
 
-setTimeout(autoRun, 1000);
-setInterval(autoRun, 2000);
+setTimeout(filterNodes, 1000);
+setInterval(filterNodes, 2000);
 
-if (true)
-    window.addEventListener("scroll", function() {
-        filterNodes()
-    });
+window.addEventListener("scroll", function() {
+    filterNodes()
+});
+
+
+
 

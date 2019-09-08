@@ -1,36 +1,27 @@
-function saveOptions() {
-  var selectedFilter = document.getElementById('selectedFilter').value;
-
-  chrome.storage.sync.set({
-    filter: selectedFilter
-  }, function(items) {
-    var status = document.getElementById('saveMessage');
-    status.textContent = 'Filter selected - ' + items.filter; 
-    setTimeout(function() {
-      status.textContent = '';
-    }, 750);
-  });
+// Saves options to chrome.storage
+function save_options() {
+    var blacklist = document.getElementById('blacklist').value;
+    chrome.storage.sync.set({
+        blacklist: blacklist.trim(),
+    }, function() {
+        // Update status to let user know options were saved.
+        var status = document.getElementById('status');
+        status.textContent = 'Words saved.';
+        setTimeout(function() {
+            status.textContent = '';
+        }, 750);
+    });
 }
 
-function getOptions(callback) {
-  chrome.storage.sync.get({
-    filter: 'aggro',
-    bullshits: 0,
-    pages: 0
-  }, function(items) {
-    document.getElementById('selectedFilter').value = items.filter;
-    document.getElementById('bullshitcount').textContent = items.bullshits;
-    document.getElementById('pagecount').textContent = items.pages;
-    callback(items.filter);
-    return items.filter;
-  });
+// Restores options stored in chrome.storage.
+function restore_options() {
+    // Use default value blacklist = 'bullshit'
+    chrome.storage.sync.get({
+        blacklist: 'a lot of bullshit',
+    }, function(items) {
+        document.getElementById('blacklist').value = items.blacklist;
+    });
 }
+document.addEventListener('DOMContentLoaded', restore_options);
+document.getElementById('save').addEventListener('click', save_options);
 
-function restoreOptions() {
-  getOptions(function(filter) {
-    document.getElementById('selectedFilter').value = filter;
-  });
-  document.getElementById('selectedFilter').addEventListener('click', saveOptions);
-}
-
-document.addEventListener('DOMContentLoaded', restoreOptions);
