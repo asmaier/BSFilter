@@ -4,48 +4,59 @@
  * This is the primary JS file that manages the detection and filtration of bullshit from the web page.
  */
 
-// Variables
-var regex = /Bullshit/i;
-var search = regex.exec(document.body.innerText);
-var selector = ":contains('BULLSHIT'), :contains('Bullshit'), :contains('bullshit')";
+var xpathPatterns = [ ];
 
-// Functions
-function filterMild() {
-	return $(selector).filter("h1,h2,h3,h4,h5,p,span,li");
+var badWords = [
+    'bullshit', 'bull-shit', 'bull shit'
+];
+
+for(var i = 0; i < badWords.length; i++) {
+
+    var word = badWords[i];
+    xpathPatterns.push(
+        "//text()[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + word + "')]",
+        "//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]",
+        "//img[contains(translate(@src, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]",
+        "//img[contains(translate(@alt, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]"
+    );
 }
 
-function filterDefault () {
-	return $(selector).filter(":only-child").closest('div');
+function filterNodes() {
+    var array = new Array();
+    for (i = 0; i < xpathPatterns.length; i++) {
+        var xpathResult =
+            document.evaluate(xpathPatterns[i],
+                document, null,
+                XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+        var thisNode = xpathResult.iterateNext();
+        while (thisNode) {
+            array.push(thisNode);
+            thisNode = xpathResult.iterateNext();
+        }
+    }
+    //deletedCount = deletedCount + array.length;
+    for (var i = 0; i < array.length; i++) {
+        var p = array[i].parentNode;
+        if (p !== null)
+            p.removeChild(array[i]);
+    }
 }
 
-function filterVindictive() {
-	return $(selector).filter(":not('body'):not('html')");
-}
-
-function getElements(filter) {
-   if (filter == "mild") {
-	   return filterMild();
-   } else if (filter == "vindictive") {
-	   return filterVindictive();
-   } else {
-	   return filterDefault();
-   }
-}
-
-function filterElements(elements) {
-	elements.fadeOut("fast");
-}
+if (true)
+    window.addEventListener("load", function() {
+        filterNodes()
+    });
 
 
-// Implementation
-if (search) {
-   chrome.storage.sync.get({
-     filter: 'aggro'
-   }, function(items) {
-	   var elements = getElements(items.filter);
-	   filterElements(elements);
-	   chrome.runtime.sendMessage({method: "saveStats", bullshits: elements.length}, function(response) {
-		 });
-	 });
-  chrome.runtime.sendMessage({}, function(response) {});
+function autoRun() {
+    filterNodes()
 }
+
+setTimeout(autoRun, 1000);
+setInterval(autoRun, 2000);
+
+if (true)
+    window.addEventListener("scroll", function() {
+        filterNodes()
+    });
+
