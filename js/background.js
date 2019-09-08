@@ -1,11 +1,11 @@
 function onMessage(request, sender, sendResponse) {
   if (request.method == "saveStats") { 
     chrome.storage.sync.get({
-      bullshits: 0,
+      words: 0,
       pages: 0
     }, function(items) {
       chrome.storage.sync.set({
-        bullshits: items.bullshits + request.bullshits,
+        words: items.words + request.words,
         pages: items.pages + 1
       });
     });

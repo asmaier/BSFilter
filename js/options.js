@@ -15,9 +15,9 @@ function save_options() {
 
 // Restores options stored in chrome.storage.
 function restore_options() {
-    // Use default value blacklist = 'bullshit'
+    // Use default value blacklist = 'FilterBubble'
     chrome.storage.sync.get({
-        blacklist: 'a lot of bullshit',
+        blacklist: 'FilterBubble',
     }, function(items) {
         document.getElementById('blacklist').value = items.blacklist;
     });
