@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "BSFilter - Gotta block 'em all",
-  "version": "1.2",
-  "description": "Remove Bullshit from the Internet!",
+  "name": "FilterBubble - You decide what you see",
+  "version": "1.0",
+  "description": "Create your very own filter bubble!",
   "page_action" :
   {
     "default_icon" : "images/icon-19x19.png",
-    "default_title" : "Warning: Bullshit is on this page!"
+    "default_title" : "You are inside your Filter Bubble!"
   },
   "permissions": [
     "tabs",
