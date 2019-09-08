@@ -6,13 +6,16 @@ This Chrome extension allows you to filter out a list of words/names you don't w
 Overview
 --------------------------
 
-Everybody knows filter bubbles are dangerous. But they are only dangerous if others (or machines) decide what you have to see and what not. FilterBubble instead gives you back control over what you want to see. It filters the noise of the internet so you can again see the signal again. 
+Everybody knows filter bubbles are dangerous. But they are only dangerous if 
+others (or machines) decide what you have to see and what not. 
+FilterBubble instead gives you back control over what you want to see. 
+It filters the noise of the internet so you can see the signal again. 
 
 Features
 --------------------------
 
-* Configureable list of names, words or phrases to blacklist
-* Attemps to remove the blacklisted words with a little collateral damage as possible
+* Configurable list of names, words or phrases to blacklist
+* Attemps to remove the blacklisted words with as little collateral damage as possible
 
 ~~Installation (for Users)~~
 --------------------------
