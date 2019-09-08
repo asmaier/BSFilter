@@ -1,27 +1,18 @@
-BSFilter - Gotta block 'em all!
+FilterBubble - You decide what you want to see!
 ================================
-A Chrome extension that removes bullshit (BS) from the Internet.
+This Chrome extension allows you to filter out a list of words/names you don't want to see on webpages anymore. 
 
 
 Overview
 --------------------------
 
-The internet is full of bullshit and bullshitters. So much so, that even researchers took notice:
-
-- https://www.callingbullshit.org/
-- https://www.iza.org/publications/dp/12282/bullshitters-who-are-they-and-what-do-we-know-about-their-lives
-- https://de.wikipedia.org/wiki/On_Bullshit
-
-BSFilter removes bullshit from the internet so you can get to normal watching funny cat GIFs.
-
+Everybody knows filter bubbles are dangerous. But they are only dangerous if others (or machines) decide what you have to see and what not. FilterBubble instead gives you back control over what you want to see. It filters the noise of the internet so you can again see the signal again. 
 
 Features
 --------------------------
 
-* Detects instances of bullshit on web pages.
-* Attempts to identify semantically sections of the page likely to contain bullshit reference and removes them from the page.
-* Sensitivity settings to customize the aggressiveness of the filter - remove single references, chunks or the entire page.
-
+* Configureable list of names, words or phrases to blacklist
+* Attemps to remove the blacklisted words with a little collateral damage as possible
 
 ~~Installation (for Users)~~
 --------------------------
@@ -29,21 +20,19 @@ Features
 ~~Just install the extension from [the Chrome Web
 Store](https://chrome.google.com/webstore/detail/jionadcjdpdikjmgfohlohnclocfaija)!~~
 
-~~Then surf the web as normal without worrying about bumping in to adults going mad about Bullshit.~~
+~~Then surf the web as normal without worrying about leaving your filter bubble.~~
 
 
 Installation (for Developers)
 -------------------------
 
-Firstly, special thanks to Rob Spectre who made the [Trump Filter](https://github.com/RobSpectre/Trump-Filter)! Open Source (which this extension is completely based off).
-
-Want to hack on BSFilter?  Sweet!
+Want to hack on FilterBubble?  Sweet!
 
 Here's a how to to get the source of the Chrome Extension running in your environment.
 
 1) Grab latest source
 <pre>
-git clone https://github.com/asmaier/BSFilter
+git clone https://github.com/asmaier/FilterBubble
 </pre>
 
 2) Enable Chrome Extension in your Chrome install
@@ -52,15 +41,23 @@ Open Chrome.
 Navigate to Settings... Tools... Extensions.
 Click + on "Developer mode"
 Click "Load unpacked extensions..."
-Navigate to directory you installed BSFilter and click Open.
-Chuckle to self as you reload this page and significant chunks of it suddenly disappear.
+Navigate to directory you installed FilterBubble and click Open.
 </pre>
 
-3) Make the world a safer place.
+3) Configuration
+<pre>
+Right click on the icon in the browser and click on Options.
+Enter words to filter, one word/phrase per line
+Click on Save
+</pre>
 
+4) Reload some webpage with your blacklisted words (or just google for them) and see them and related content magically disappear. You are now in your filter bubble!
 
 Meta
 -------------------------
 
-* Special thanks to [Rob Spectre](http://brooklynhacker.com) since he done all of the hard work, I just hit find & replace.
+* This project is inspired by and in parts based on
+  * [Trump Blocker](https://chrome.google.com/webstore/detail/trump-blocker/nhmckipmafnikgjnaeadpngccggobaej)
+  * [Trump Filter](https://github.com/RobSpectre/Trump-Filter)
+  * [PokeGone](https://github.com/JamieFarrelly/PokeGone)
 * This work is licensed under GPLv3.
