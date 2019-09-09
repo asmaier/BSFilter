@@ -14,10 +14,10 @@ chrome.storage.sync.get({
 
         var word = badWords[i];
         xpathPatterns.push(
-            "//text()[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + word + "')]",
-            "//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]",
-            "//img[contains(translate(@src, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]",
-            "//img[contains(translate(@alt, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]"
+            ["//text()[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + word + "')]", word],
+            ["//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]", word],
+            ["//img[contains(translate(@src, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]", word],
+            ["//img[contains(translate(@alt, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + word + "')]", word]
         );
     }
 });
@@ -26,12 +26,17 @@ function filterNodes() {
     var array = new Array();
     for (i = 0; i < xpathPatterns.length; i++) {
         var xpathResult =
-            document.evaluate(xpathPatterns[i],
+            document.evaluate(xpathPatterns[i][0],
                 document, null,
                 XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
         var thisNode = xpathResult.iterateNext();
         while (thisNode) {
-            array.push(thisNode);
+            // only when we have a match for the whole word add the node to the array
+            // actually we allow for variations like "_word_" "words" or "_words"
+            var regex = new RegExp("(\\b|_)(" + xpathPatterns[i][1] + ")(\\b|_|s)", "i");
+            if(regex.test(thisNode.data)) {
+                array.push(thisNode);
+            }
             thisNode = xpathResult.iterateNext();
         }
     }
