@@ -17,13 +17,13 @@ Features
 * Configurable list of names, words or phrases to blacklist
 * Attemps to remove the blacklisted words with as little collateral damage as possible
 
-~~Installation (for Users)~~
+Installation (for Users)
 --------------------------
 
-~~Just install the extension from [the Chrome Web
-Store](https://chrome.google.com/webstore/detail/jionadcjdpdikjmgfohlohnclocfaija)!~~
+Just install the extension from [the Chrome Web
+Store](https://chrome.google.com/webstore/detail/filterbubble/amgnookcdbjfnnppjdddkbjdacdajlmk)!
 
-~~Then surf the web as normal without worrying about leaving your filter bubble.~~
+Then surf the web as normal without worrying about leaving your filter bubble.
 
 
 Installation (for Developers)
